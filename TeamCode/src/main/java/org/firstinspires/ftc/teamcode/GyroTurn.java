@@ -1,3 +1,5 @@
+package org.firstinspires.ftc.teamcode;
+
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
@@ -62,7 +64,7 @@ public class GyroTurn {
     }
 
     public void updateHeading() {
-        robot.odo.bulkUpdate();
+        robot.odo.update();
         Pose2D pos = robot.odo.getPosition();
         currHeading = pos.getHeading(AngleUnit.DEGREES);
         telemetry.addData("Heading: ", currHeading);

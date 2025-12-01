@@ -1,5 +1,7 @@
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import org.firstinspires.ftc.teamcode.RobotHardware;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Shoot {
