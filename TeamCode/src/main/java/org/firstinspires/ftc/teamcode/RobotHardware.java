@@ -73,6 +73,7 @@ public class RobotHardware {
     private Servo kicker = null;
     private Servo revolver = null;
     private Servo angle = null;
+    private Servo kickstand = null;
 
     // object for pin point computer
     public GoBildaPinpointDriver odo = null;
@@ -85,8 +86,10 @@ public class RobotHardware {
     public static final double LAUNCH_2   = .87;
     public static final double LOAD_3   =  .71;
     public static final double LAUNCH_3 =  .33;
-    public static final double KICK_POSITION = 0;
+    public static final double KICK_POSITION = .1;
     public static final double KICK_RESET = .4;
+    public static final double KICKSTAND_OUT = .25;
+    public static final double KICKSTAND_IN = .75;
     public static final double CLICKS_PER_CENTIMETER = 23;
     static final double        DRIVE_SPEED             = 0.6;
     static final double        TURN_SPEED              = 0.5;
@@ -119,6 +122,7 @@ public class RobotHardware {
         kicker = myOpMode.hardwareMap.get(Servo.class, "kicker");
         revolver = myOpMode.hardwareMap.get(Servo.class, "revolver");
         angle = myOpMode.hardwareMap.get(Servo.class, "angle");
+        kickstand = myOpMode.hardwareMap.get(Servo.class,"kickstand");
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // Pushing the left stick forward MUST make robot go forward. So adjust these two lines based on your first test drive.
@@ -147,11 +151,16 @@ public class RobotHardware {
         myOpMode.telemetry.setMsTransmissionInterval(11);
         limelight.pipelineSwitch(0);
 
+        myOpMode.telemetry.addData(">", "Hardware Initialized");
+        myOpMode.telemetry.update();
+    }
+    public void init_auto (){
         //set servo positions
         revolver.setPosition(LOAD_1);
         kicker.setPosition(KICK_RESET);
+        kickstand.setPosition(KICKSTAND_IN);
 
-        myOpMode.telemetry.addData(">", "Hardware Initialized");
+        myOpMode.telemetry.addData(">", "Auto Initialized");
         myOpMode.telemetry.update();
     }
 
@@ -206,6 +215,10 @@ public class RobotHardware {
 
     public void setAngle(double setAngle){
         angle.setPosition(setAngle);
+    }
+
+    public void setKickstand(double setKickstand){
+        kickstand.setPosition(setKickstand);
     }
 
     public void setRevolverPosition(double barrelSetting) {

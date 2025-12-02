@@ -64,8 +64,9 @@ public class BlueAuto extends LinearOpMode {
     // Create a RobotHardware object to be used to access robot hardware.
     // Prefix any hardware functions with "robot." to access this class.
     RobotHardware robot = new RobotHardware(this);
-    GyroTurn gyroTurn = new GyroTurn(robot,telemetry);
+    GyroTurn gyroTurn = new GyroTurn(robot, telemetry);
     Shoot shoot = new Shoot(robot, telemetry, this);
+    ReadObelisk readObelisk = new ReadObelisk(robot, telemetry, this);
 
     // Calculate the COUNTS_PER_INCH for your specific drive train.
     // Go to your motor vendor website to determine your motor's COUNTS_PER_MOTOR_REV
@@ -88,6 +89,7 @@ public class BlueAuto extends LinearOpMode {
 
         // initialize all the hardware, using the hardware class. See how clean and simple this is?
         robot.init();
+        robot.init_auto();
 
         robot.resetDriveEncoders();
         robot.limelight.start();
@@ -96,7 +98,7 @@ public class BlueAuto extends LinearOpMode {
 
         waitForStart();
         backward(81.28 * robot.CLICKS_PER_CENTIMETER, .5);
-        pattern = readObelisk();
+        pattern = readObelisk.getPattern();
 
         telemetry.addData("Pattern", pattern);
         telemetry.update();
@@ -151,26 +153,5 @@ public class BlueAuto extends LinearOpMode {
         robot.resetDriveEncoders();
         robot.setTargets((int)-distance);
         robot.driveWhileBusy(-speed, 3.0);
-    }
-
-    private patterns readObelisk() {
-        patterns patternFound = patterns.PPG;  // default
-
-        LLResult result = robot.limelight.getLatestResult();
-        while(result.isValid() == false && opModeIsActive()) {
-            result = robot.limelight.getLatestResult();
-            telemetry.addData("result is Valid", result.isValid());
-            telemetry.update();
-        }
-
-        List<LLResultTypes.FiducialResult> fiducialResults = result.getFiducialResults();
-        for (LLResultTypes.FiducialResult fr : fiducialResults) {
-            telemetry.addData("Fiducial", "ID: %d, Family: %s, X: %.2f, Y: %.2f", fr.getFiducialId(), fr.getFamily(), fr.getTargetXDegrees(), fr.getTargetYDegrees());
-            telemetry.update();
-            if (fr.getFiducialId() == 21) patternFound = patterns.GPP;
-            if (fr.getFiducialId() == 22) patternFound = patterns.PGP;
-            if (fr.getFiducialId() == 23) patternFound = patterns.PPG;
-        }
-        return patternFound;
     }
 }
