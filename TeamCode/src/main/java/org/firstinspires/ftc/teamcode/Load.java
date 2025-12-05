@@ -20,19 +20,19 @@ public class Load {
         robot.setIntakeSpeed(1);
         if (opMode.opModeIsActive()) {
             robot.setRevolverPosition(first);
-            Thread.sleep(1500);
-            drive.backward(10,.5);
+            Thread.sleep(1000);
+            drive.backward(10,.1);
 
         }
         if (opMode.opModeIsActive()) {
             robot.setRevolverPosition(second);
-            Thread.sleep(1500);
-            drive.backward(20,.5);
+            Thread.sleep(1000);
+            drive.backward(20,.1);
         }
         if (opMode.opModeIsActive()) {
             robot.setRevolverPosition(third);
-            Thread.sleep(1500);
-            drive.backward(30,.5);
+            Thread.sleep(1000);
+            drive.backward(30,.1);
         }
     }
 

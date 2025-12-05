@@ -21,11 +21,11 @@ public class ReadObelisk {
     }
     public patterns getPattern() {
         patterns patternFound = patterns.PPG;  // default
-        //ElapsedTime runtime = new ElapsedTime();
-        //runtime.reset();
+        ElapsedTime runtime = new ElapsedTime();
+        runtime.reset();
 
         LLResult result = robot.limelight.getLatestResult();
-        while(result.isValid() == false && opMode.opModeIsActive()) {
+        while(result.isValid() == false && opMode.opModeIsActive() && runtime.milliseconds() < 500) {
             result = robot.limelight.getLatestResult();
             telemetry.addData("result is Valid", result.isValid());
             telemetry.update();

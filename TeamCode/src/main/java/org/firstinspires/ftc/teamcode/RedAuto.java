@@ -73,6 +73,7 @@ public class RedAuto extends LinearOpMode {
     Shoot shoot = new Shoot(robot, telemetry,this);
     ReadObelisk readObelisk = new ReadObelisk(robot, telemetry, this);
     Drive drive = new Drive(robot, telemetry, this);
+    Load load = new Load(robot, telemetry, this);
 
     // Calculate the COUNTS_PER_INCH for your specific drive train.
     // Go to your motor vendor website to determine your motor's COUNTS_PER_MOTOR_REV
@@ -103,7 +104,7 @@ public class RedAuto extends LinearOpMode {
         // Wait for the game to start (driver presses START)
 
         waitForStart();
-        backward(81.28 * robot.CLICKS_PER_CENTIMETER, .5);
+        drive.backward(81.28, .5);
         pattern = readObelisk.getPattern();
 
         telemetry.addData("Pattern", pattern);
@@ -111,54 +112,20 @@ public class RedAuto extends LinearOpMode {
 
         // towards goal
         robot.setLaunchSpeed(.78);  // spin up launch while turning
-        gyroTurn.goodEnough(-45);
         robot.setAngle(.15);
-        sleep(1000);
-        switch (pattern) {
-            case PPG:
-                telemetry.addData("PPG", pattern);
-                telemetry.update();
-                shoot.threeBalls(robot.LAUNCH_1, robot.LAUNCH_3, robot.LAUNCH_2);
-                break;
-            case PGP:
-                telemetry.addData("PGP", pattern);
-                telemetry.update();
-                shoot.threeBalls(robot.LAUNCH_1, robot.LAUNCH_2, robot.LAUNCH_3);
-                break;
-            case GPP:
-                telemetry.addData("GPP", pattern);
-                telemetry.update();
-                shoot.threeBalls(robot.LAUNCH_2, robot.LAUNCH_1, robot.LAUNCH_3);
-                break;
-        }
+        gyroTurn.goodEnough(-45);
+        shoot.thePattern(pattern);
         robot.setLaunchSpeed(0);
         gyroTurn.goodEnough(0);
-        backward(15 * robot.CLICKS_PER_CENTIMETER, .5);
+        drive.backward(15, .5);
         gyroTurn.goodEnough(90);
-        backward(23 * robot.CLICKS_PER_CENTIMETER, .4);
-        robot.setIntakeSpeed(1);
-        robot.setRevolverPosition(robot.LOAD_1);
-        sleep(1000);
-        backward(6*2.54*robot.CLICKS_PER_CENTIMETER,.1);
-        robot.setRevolverPosition(robot.LOAD_3);
-        sleep(1000);
-        backward(4*2.54*robot.CLICKS_PER_CENTIMETER,.1);
-        robot.setRevolverPosition(robot.LOAD_2);
-        sleep(1200);
-        backward(5*2.54*robot.CLICKS_PER_CENTIMETER,.1);
+        drive.backward(23, .4);
+        load.threeBalls(robot.LOAD_1, robot.LOAD_3, robot.LOAD_2);
+        gyroTurn.goodEnough(60);
+        drive.forward(30, .5);
+        robot.setLaunchSpeed(.78);
+        gyroTurn.goodEnough(-45);
+        shoot.thePattern(pattern);
     }
 
-    // Drive the robot forward this distance at the given speed using the
-    // motor encoders of the drive train
-    private void forward(double distance, double speed) {
-        robot.resetDriveEncoders();
-        robot.setTargets((int)distance);
-        robot.driveWhileBusy(speed, 3.0);
-    }
-
-    private void backward(double distance, double speed) {
-        robot.resetDriveEncoders();
-        robot.setTargets((int)-distance);
-        robot.driveWhileBusy(-speed, 3.0);
-    }
 }

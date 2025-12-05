@@ -15,6 +15,25 @@ public class Shoot {
         this.opMode = opMode;
     }
 
+    public void thePattern (patterns pattern) throws InterruptedException {
+        switch (pattern) {
+            case PPG:
+                telemetry.addData("PPG", pattern);
+                telemetry.update();
+                threeBalls(robot.LAUNCH_1, robot.LAUNCH_3, robot.LAUNCH_2);
+                break;
+            case PGP:
+                telemetry.addData("PGP", pattern);
+                telemetry.update();
+                threeBalls(robot.LAUNCH_1, robot.LAUNCH_2, robot.LAUNCH_3);
+                break;
+            case GPP:
+                telemetry.addData("GPP", pattern);
+                telemetry.update();
+                threeBalls(robot.LAUNCH_2, robot.LAUNCH_1, robot.LAUNCH_3);
+                break;
+        }
+    }
     public void threeBalls (double first, double second, double third) throws InterruptedException {
         if (opMode.opModeIsActive()) {
             robot.setRevolverPosition(first);

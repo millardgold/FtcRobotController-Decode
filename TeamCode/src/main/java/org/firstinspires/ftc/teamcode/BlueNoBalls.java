@@ -65,7 +65,7 @@ import java.util.regex.Pattern;
  */
 
 @Autonomous(name="Robot: RedNoBalls", group="Robot")
-public class RedNoBalls extends LinearOpMode {
+public class BlueNoBalls extends LinearOpMode {
     // Create a RobotHardware object to be used to access robot hardware.
     // Prefix any hardware functions with "robot." to access this class.
     RobotHardware robot       = new RobotHardware(this);
@@ -105,18 +105,18 @@ public class RedNoBalls extends LinearOpMode {
         waitForStart();
         drive.forward(66.04, .5);
         pattern = readObelisk.getPattern();
-        gyroTurn.goodEnough(90);
+        gyroTurn.goodEnough(-90);
 
         telemetry.addData("Pattern", pattern);
         telemetry.update();
 
         load.threeBalls(robot.LOAD_2, robot.LOAD_1, robot.LOAD_3);
 
-        gyroTurn.goodEnough(135);
+        gyroTurn.goodEnough(-135);
         drive.forward(100, .5);
         robot.setLaunchSpeed(1);
         robot.setAngle(.1);
-        gyroTurn.goodEnough(30);
+        gyroTurn.goodEnough(-30);
         shoot.thePattern(pattern);
 
 

@@ -17,13 +17,13 @@ public class Drive {
     }
     public void forward(double distance, double speed) {
         robot.resetDriveEncoders();
-        robot.setTargets((int)distance);
+        robot.setTargets((int)(distance * robot.CLICKS_PER_CENTIMETER));
         robot.driveWhileBusy(speed, 3.0);
     }
 
     public void backward(double distance, double speed) {
         robot.resetDriveEncoders();
-        robot.setTargets((int)-distance);
+        robot.setTargets((int)-(distance * robot.CLICKS_PER_CENTIMETER));
         robot.driveWhileBusy(-speed, 3.0);
     }
 }

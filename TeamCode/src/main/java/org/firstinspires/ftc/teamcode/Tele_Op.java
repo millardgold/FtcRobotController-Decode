@@ -28,13 +28,17 @@ package org.firstinspires.ftc.teamcode;/* Copyright (c) 2022 FIRST. All rights r
  */
 
 import com.qualcomm.hardware.limelightvision.LLResult;
+import com.qualcomm.hardware.limelightvision.LLResultTypes;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
+
+import java.util.List;
 
 
 /*
@@ -73,6 +77,7 @@ public class Tele_Op extends LinearOpMode {
     // Create a RobotHardware object to be used to access robot hardware.
     // Prefix any hardware functions with "robot." to access this class.
     RobotHardware robot       = new RobotHardware(this);
+    GyroTurn gyroTurn = new GyroTurn(robot, telemetry);
 
     @Override
     public void runOpMode() {
@@ -169,12 +174,19 @@ public class Tele_Op extends LinearOpMode {
                 intakeSpeed = 0;
             }
 
-            if (gamepad2.b) {
+            if (gamepad2.b && ! gamepad2.start) {
                 robot.setRevolverPosition(RobotHardware.LAUNCH_3);
                 launchSpeed = launchStandBy;
                 robot.setAngle(launchAngle);
                 intakeSpeed = 0;
             }
+
+            if (gamepad1.a && ! gamepad1.start) {
+                gyroTurn.goodEnough(-getOffset());
+            }
+
+
+
 
             //if (gamepad2.left_stick_button)
             //    robot.bumpAnglePosition();
@@ -222,4 +234,26 @@ public class Tele_Op extends LinearOpMode {
         }
         return distance;
     }
+
+    private double getOffset() {
+        double offset = 0;  // default
+        ElapsedTime runtime = new ElapsedTime();
+        runtime.reset();
+
+        LLResult result = robot.limelight.getLatestResult();
+        while(result.isValid() == false && runtime.milliseconds() < 500) {
+            result = robot.limelight.getLatestResult();
+            telemetry.addData("result is Valid", result.isValid());
+            telemetry.update();
+        }
+
+        List<LLResultTypes.FiducialResult> fiducialResults = result.getFiducialResults();
+        for (LLResultTypes.FiducialResult fr : fiducialResults) {
+            telemetry.addData("Fiducial", "ID: %d, Family: %s, X: %.2f, Y: %.2f", fr.getFiducialId(), fr.getFamily(), fr.getTargetXDegrees(), fr.getTargetYDegrees());
+            offset = fr.getTargetXDegrees();
+            telemetry.update();
+        }
+        return offset;
+    }
+
 }

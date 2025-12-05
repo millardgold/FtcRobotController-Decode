@@ -82,7 +82,7 @@ public class RobotHardware {
     // Make them public so they CAN be used by the calling OpMode
     public static final double LOAD_1 =  .17;
     public static final double LAUNCH_1 = .59;
-    public static final double LOAD_2 = .45;
+    public static final double LOAD_2 = .45; // barrel 2 is green
     public static final double LAUNCH_2   = .87;
     public static final double LOAD_3   =  .71;
     public static final double LAUNCH_3 =  .33;
