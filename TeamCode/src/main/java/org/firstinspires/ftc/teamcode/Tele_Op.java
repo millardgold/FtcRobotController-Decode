@@ -182,7 +182,7 @@ public class Tele_Op extends LinearOpMode {
             }
 
             if (gamepad1.a && ! gamepad1.start) {
-                gyroTurn.goodEnough(-getOffset());
+                gyroTurn.turnTowardsGoal(-getOffset());
             }
 
 

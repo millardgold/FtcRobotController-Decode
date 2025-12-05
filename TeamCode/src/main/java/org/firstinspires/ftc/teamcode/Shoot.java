@@ -37,17 +37,17 @@ public class Shoot {
     public void threeBalls (double first, double second, double third) throws InterruptedException {
         if (opMode.opModeIsActive()) {
             robot.setRevolverPosition(first);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             kickball();
         }
         if (opMode.opModeIsActive()) {
             robot.setRevolverPosition(second);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             kickball();
         }
         if (opMode.opModeIsActive()) {
             robot.setRevolverPosition(third);
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             kickball();
         }
     }

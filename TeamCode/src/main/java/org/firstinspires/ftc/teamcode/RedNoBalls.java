@@ -103,9 +103,10 @@ public class RedNoBalls extends LinearOpMode {
         // Wait for the game to start (driver presses START)
 
         waitForStart();
-        drive.forward(66.04, .5);
+        drive.forward(45, .3);
         pattern = readObelisk.getPattern();
         gyroTurn.goodEnough(90);
+        drive.backward(23, .3);
 
         telemetry.addData("Pattern", pattern);
         telemetry.update();
@@ -113,10 +114,10 @@ public class RedNoBalls extends LinearOpMode {
         load.threeBalls(robot.LOAD_2, robot.LOAD_1, robot.LOAD_3);
 
         gyroTurn.goodEnough(135);
-        drive.forward(100, .5);
+        drive.forward(75, .3);
         robot.setLaunchSpeed(1);
         robot.setAngle(.1);
-        gyroTurn.goodEnough(30);
+        gyroTurn.goodEnough(-20);
         shoot.thePattern(pattern);
 
 

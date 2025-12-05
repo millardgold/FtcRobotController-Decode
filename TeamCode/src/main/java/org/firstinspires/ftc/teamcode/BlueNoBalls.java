@@ -64,7 +64,7 @@ import java.util.regex.Pattern;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Robot: RedNoBalls", group="Robot")
+@Autonomous(name="Robot: BlueNoBalls", group="Robot")
 public class BlueNoBalls extends LinearOpMode {
     // Create a RobotHardware object to be used to access robot hardware.
     // Prefix any hardware functions with "robot." to access this class.

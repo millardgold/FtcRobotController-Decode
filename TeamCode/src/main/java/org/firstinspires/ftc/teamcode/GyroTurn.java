@@ -69,5 +69,10 @@ public class GyroTurn {
         currHeading = pos.getHeading(AngleUnit.DEGREES);
         telemetry.addData("Heading: ", currHeading);
         telemetry.update();
-        }
+    }
+
+    public void turnTowardsGoal(double offset) {
+        updateHeading();
+        goodEnough(offset + currHeading);
+    }
 }
