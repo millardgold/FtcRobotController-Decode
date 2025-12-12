@@ -27,16 +27,8 @@ package org.firstinspires.ftc.teamcode;/* Copyright (c) 2017 FIRST. All rights r
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import com.qualcomm.hardware.limelightvision.LLResult;
-import com.qualcomm.hardware.limelightvision.LLResultTypes;
-import com.qualcomm.hardware.limelightvision.LLStatus;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
-import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
-
-import java.util.List;
-import java.util.regex.Pattern;
 
 /*
  * This OpMode illustrates the concept of driving a path based on encoder counts.
@@ -64,8 +56,8 @@ import java.util.regex.Pattern;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Robot: RedNoBalls", group="Robot")
-public class RedNoBalls extends LinearOpMode {
+@Autonomous(name="Robot: BlueLongRange", group="Robot")
+public class BlueLongRange extends LinearOpMode {
     // Create a RobotHardware object to be used to access robot hardware.
     // Prefix any hardware functions with "robot." to access this class.
     RobotHardware robot       = new RobotHardware(this);
@@ -96,6 +88,7 @@ public class RedNoBalls extends LinearOpMode {
 
         // initialize all the hardware, using the hardware class. See how clean and simple this is?
         robot.init();
+        robot.init_auto();
 
         robot.resetDriveEncoders();
         robot.limelight.start();
@@ -103,22 +96,21 @@ public class RedNoBalls extends LinearOpMode {
         // Wait for the game to start (driver presses START)
 
         waitForStart();
-        drive.forward(45, .3);
+        robot.setLaunchSpeed(1);
+        robot.setAngle(.1);
+        drive.forward(20, .3);
         pattern = readObelisk.getPattern();
-        gyroTurn.goodEnough(90);
-        drive.backward(23, .3);
+        robot.LIMELIGHT_PIPE = 2;
+        robot.limelight.pipelineSwitch(2);
+        gyroTurn.goodEnough(20);
+        gyroTurn.turnTowardsGoal(-readObelisk.getOffset());
 
         telemetry.addData("Pattern", pattern);
         telemetry.update();
 
-        load.threeBalls(robot.LOAD_2, robot.LOAD_1, robot.LOAD_3);
-
-        gyroTurn.goodEnough(135);
-        drive.forward(75, .3);
-        robot.setLaunchSpeed(1);
-        robot.setAngle(.1);
-        gyroTurn.goodEnough(-20);
         shoot.thePattern(pattern);
+        gyroTurn.goodEnough(0);
+        drive.forward(30, .3);
 
 
 

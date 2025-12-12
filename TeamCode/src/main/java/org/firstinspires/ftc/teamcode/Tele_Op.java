@@ -78,6 +78,7 @@ public class Tele_Op extends LinearOpMode {
     // Prefix any hardware functions with "robot." to access this class.
     RobotHardware robot       = new RobotHardware(this);
     GyroTurn gyroTurn = new GyroTurn(robot, telemetry);
+    ReadObelisk readObelisk = new ReadObelisk(robot, telemetry, this);
 
     @Override
     public void runOpMode() {
@@ -103,6 +104,7 @@ public class Tele_Op extends LinearOpMode {
         // Send telemetry message to signify robot waiting;
         // Wait for the game to start (driver presses START)
         waitForStart();
+        robot.limelight.pipelineSwitch(robot.LIMELIGHT_PIPE);
 
 
 
@@ -182,7 +184,9 @@ public class Tele_Op extends LinearOpMode {
             }
 
             if (gamepad1.a && ! gamepad1.start) {
-                gyroTurn.turnTowardsGoal(-getOffset());
+                telemetry.addData("offset", -readObelisk.getOffset());
+                telemetry.update();
+                gyroTurn.turnTowardsGoal(-readObelisk.getOffset());
             }
 
 

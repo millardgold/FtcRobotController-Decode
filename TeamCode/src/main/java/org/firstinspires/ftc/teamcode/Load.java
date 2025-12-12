@@ -18,7 +18,6 @@ public class Load {
         drive = new Drive(robot, telemetry, opMode);
     }
     public void threeBalls (double first, double second, double third) throws InterruptedException {
-        robot.setIntakeSpeed(1);
         if (opMode.opModeIsActive()) {
             drive.backward(15,.1);
         }

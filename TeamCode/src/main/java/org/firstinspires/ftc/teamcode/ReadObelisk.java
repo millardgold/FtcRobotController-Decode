@@ -41,4 +41,25 @@ public class ReadObelisk {
         }
         return patternFound;
     }
+
+    public double getOffset() {
+        double offset = 0;  // default
+        ElapsedTime runtime = new ElapsedTime();
+        runtime.reset();
+
+        LLResult result = robot.limelight.getLatestResult();
+        while(result.isValid() == false && runtime.milliseconds() < 500) {
+            result = robot.limelight.getLatestResult();
+            telemetry.addData("result is Valid", result.isValid());
+            telemetry.update();
+        }
+
+        List<LLResultTypes.FiducialResult> fiducialResults = result.getFiducialResults();
+        for (LLResultTypes.FiducialResult fr : fiducialResults) {
+            telemetry.addData("Fiducial", "ID: %d, Family: %s, X: %.2f, Y: %.2f", fr.getFiducialId(), fr.getFamily(), fr.getTargetXDegrees(), fr.getTargetYDegrees());
+            offset = fr.getTargetXDegrees();
+            telemetry.update();
+        }
+        return offset;
+    }
 }

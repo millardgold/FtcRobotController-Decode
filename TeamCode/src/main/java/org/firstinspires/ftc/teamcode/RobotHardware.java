@@ -86,13 +86,14 @@ public class RobotHardware {
     public static final double LAUNCH_2   = .87;
     public static final double LOAD_3   =  .71;
     public static final double LAUNCH_3 =  .33;
-    public static final double KICK_POSITION = .1;
+    public static final double KICK_POSITION = .05;
     public static final double KICK_RESET = .4;
     public static final double KICKSTAND_OUT = .25;
     public static final double KICKSTAND_IN = .75;
     public static final double CLICKS_PER_CENTIMETER = 23;
     static final double        DRIVE_SPEED             = 0.6;
     static final double        TURN_SPEED              = 0.5;
+    public static int          LIMELIGHT_PIPE = 0;
 
     // Set Turn Speed Constants
     public final double HIGH_TURN_POWER = 0.52;
@@ -159,6 +160,7 @@ public class RobotHardware {
         revolver.setPosition(LOAD_1);
         kicker.setPosition(KICK_RESET);
         kickstand.setPosition(KICKSTAND_IN);
+        angle.setPosition(.15);
 
         myOpMode.telemetry.addData(">", "Auto Initialized");
         myOpMode.telemetry.update();
