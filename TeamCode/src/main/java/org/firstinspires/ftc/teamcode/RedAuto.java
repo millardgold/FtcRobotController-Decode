@@ -126,10 +126,10 @@ public class RedAuto extends LinearOpMode {
         gyroTurn.goodEnough(90);
         drive.backward(23, .3);
         load.threeBalls(robot.LOAD_1, robot.LOAD_3, robot.LOAD_2);
-        gyroTurn.goodEnough(70);
+        gyroTurn.goodEnough(75);
         drive.forward(60, 1);
         robot.setLaunchSpeed(.78);
-        gyroTurn.goodEnough(-45);
+        gyroTurn.goodEnough(-42);
         shoot.thePattern(pattern);
     }
 
