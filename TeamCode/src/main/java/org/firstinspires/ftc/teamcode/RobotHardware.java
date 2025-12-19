@@ -74,6 +74,7 @@ public class RobotHardware {
     private Servo revolver = null;
     private Servo angle = null;
     private Servo kickstand = null;
+    private Servo cameraServo = null;
 
     // object for pin point computer
     public GoBildaPinpointDriver odo = null;
@@ -94,6 +95,8 @@ public class RobotHardware {
     static final double        DRIVE_SPEED             = 0.6;
     static final double        TURN_SPEED              = 0.5;
     public static int          LIMELIGHT_PIPE = 0;
+    public static final double CAMERA_LEFT = .4;
+    public static final double CAMERA_RIGHT = 6;
 
     // Set Turn Speed Constants
     public final double HIGH_TURN_POWER = 0.52;
@@ -124,6 +127,7 @@ public class RobotHardware {
         revolver = myOpMode.hardwareMap.get(Servo.class, "revolver");
         angle = myOpMode.hardwareMap.get(Servo.class, "angle");
         kickstand = myOpMode.hardwareMap.get(Servo.class,"kickstand");
+        cameraServo = myOpMode.hardwareMap.get(Servo.class,"cameraServo");
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // Pushing the left stick forward MUST make robot go forward. So adjust these two lines based on your first test drive.
@@ -161,6 +165,7 @@ public class RobotHardware {
         kicker.setPosition(KICK_RESET);
         kickstand.setPosition(KICKSTAND_IN);
         angle.setPosition(.15);
+        cameraServo.setPosition(0.5);
 
         myOpMode.telemetry.addData(">", "Auto Initialized");
         myOpMode.telemetry.update();
@@ -201,6 +206,10 @@ public class RobotHardware {
         // Output the values to the motor drives.
         leftDrive.setPower(leftWheel);
         rightDrive.setPower(rightWheel);
+    }
+
+    public void setCameraPosition(double position) {
+        cameraServo.setPosition(position);
     }
 
     public void bumpAnglePosition() {
