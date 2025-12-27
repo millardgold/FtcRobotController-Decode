@@ -101,22 +101,19 @@ public class BlueAutoGoal extends LinearOpMode {
         waitForStart();
         robot.setLaunchSpeed(.78);  // spin up launch while turning
         robot.setAngle(.15);
-        robot.setCameraPosition(RobotHardware.CAMERA_RIGHT);
-        drive.backward(117, .67);
+        drive.backward(90, .5);
+        gyroTurn.goodEnough(-31);
         pattern = readObelisk.getPattern();
         gyroTurn.goodEnough(0);
         robot.LIMELIGHT_PIPE = 2;
         shoot.thePattern(pattern);
-        gyroTurn.goodEnough(-135);
-        robot.setIntakeSpeed(1);
+        gyroTurn.goodEnough(-50);
+        robot.setIntakeSpeed(0);
+        robot.setLaunchSpeed(0);
         robot.setRevolverPosition(robot.LOAD_1);
         drive.backward(61,.25);
-        load.threeBalls(robot.LOAD_1, robot.LOAD_3, robot.LOAD_2);
-        drive.forward(75,.657);
-        gyroTurn.goodEnough(0); // towards goal
-        shoot.thePattern(pattern);
-        gyroTurn.goodEnough(45);
-        drive.backward(40,1);
+
+
 
     }
 
