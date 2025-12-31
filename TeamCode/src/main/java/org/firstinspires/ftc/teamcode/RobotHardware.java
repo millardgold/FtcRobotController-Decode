@@ -84,9 +84,9 @@ public class RobotHardware {
     public static final double LOAD_1 =  .17;
     public static final double LAUNCH_1 = .59;
     public static final double LOAD_2 = .45; // barrel 2 is green
-    public static final double LAUNCH_2   = .87;
+    public static final double LAUNCH_2   = .86;
     public static final double LOAD_3   =  .71;
-    public static final double LAUNCH_3 =  .33;
+    public static final double LAUNCH_3 =  .32;
     public static final double KICK_POSITION = .05;
     public static final double KICK_RESET = .4;
     public static final double KICKSTAND_OUT = .25;

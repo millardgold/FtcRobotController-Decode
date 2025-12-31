@@ -19,12 +19,12 @@ public class Load {
     }
     public void threeBalls (double first, double second, double third) throws InterruptedException {
         if (opMode.opModeIsActive()) {
-            drive.backward(15,.1);
+            drive.backward(8,.1);
         }
         if (opMode.opModeIsActive()) {
             robot.setRevolverPosition(second);
             Thread.sleep(1000);
-            drive.backward(8,.1);
+            drive.backward(10,.1);
         }
         if (opMode.opModeIsActive()) {
             robot.setRevolverPosition(third);
