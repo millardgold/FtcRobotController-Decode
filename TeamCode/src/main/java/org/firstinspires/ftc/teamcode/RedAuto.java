@@ -94,9 +94,9 @@ public class RedAuto extends LinearOpMode {
         pattern = readObelisk.getPattern();
         drive.pid_forward(138, .6);
         RobotHardware.LIMELIGHT_PIPE = 1;
-        robot.setLaunchSpeed(.78);  // spin up launch while turning
-        robot.setAngle(.15);
-        gyroTurn.goodEnough(-41); // towards goal
+        robot.setLaunchSpeed(.75);  // spin up launch while turning
+        robot.setAngle(.14);
+        gyroTurn.goodEnough(-43); // towards goal
         shoot.thePattern(pattern);
         robot.setLaunchSpeed(0);
         gyroTurn.goodEnough(86);
@@ -105,12 +105,12 @@ public class RedAuto extends LinearOpMode {
         robot.setRevolverPosition(robot.LOAD_3);
         drive.backward(34,.3);
         load.threeBalls(robot.LOAD_3, robot.LOAD_1, robot.LOAD_2);
-        robot.setLaunchSpeed(.78);
-        drive.forward(60,.55);
+        robot.setLaunchSpeed(.75);
+        drive.forward(58,.55);
         robot.setIntakeSpeed(0);
         //sleep(30000);
 
-        gyroTurn.goodEnough(-36); // towards goal
+        gyroTurn.goodEnough(-41); // towards goal
         shoot.thePattern(pattern);
         gyroTurn.goodEnough(0);
         drive.backward(40,.5);

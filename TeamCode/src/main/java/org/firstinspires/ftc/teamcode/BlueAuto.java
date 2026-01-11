@@ -89,8 +89,8 @@ public class BlueAuto extends LinearOpMode {
         pattern = readObelisk.getPattern();
         drive.pid_forward(138, .6);
         RobotHardware.LIMELIGHT_PIPE = 2;
-        robot.setLaunchSpeed(.78);  // spin up launch while turning
-        robot.setAngle(.15);
+        robot.setLaunchSpeed(.75);  // spin up launch while turning
+        robot.setAngle(.14);
         gyroTurn.goodEnough(41); // towards goal
         shoot.thePattern(pattern);
         robot.setLaunchSpeed(0);
@@ -100,7 +100,7 @@ public class BlueAuto extends LinearOpMode {
         robot.setRevolverPosition(robot.LOAD_3);
         drive.backward(34,.3);
         load.threeBalls(robot.LOAD_3, robot.LOAD_1, robot.LOAD_2);
-        robot.setLaunchSpeed(.78);
+        robot.setLaunchSpeed(.75);
         drive.forward(60,.55);
         robot.setIntakeSpeed(0);
         //sleep(30000);

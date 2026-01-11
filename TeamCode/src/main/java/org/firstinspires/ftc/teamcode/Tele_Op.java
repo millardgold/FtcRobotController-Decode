@@ -84,9 +84,9 @@ public class Tele_Op extends LinearOpMode {
     public void runOpMode() {
         double drive        = 0;
         double turn         = 0;
-        double launchSpeed  = .73;
+        double launchSpeed  = .75;
         double launchStandBy= .73;
-        double launchAngle  = .29;
+        double launchAngle  = .22;
         double intakeSpeed  = 0;
         double currHeading;
         double distanceToGoal = -1;
@@ -183,36 +183,7 @@ public class Tele_Op extends LinearOpMode {
                 gyroTurn.turnTowardsGoal(-readObelisk.getOffset());
             }
 
-
-
-
-            //if (gamepad2.left_stick_button)
-            //    robot.bumpAnglePosition();
-//
-//            if (gamepad2.right_stick_button)
-//                robot.lowerAnglePosition();
-
-//            if (gamepad2.right_bumper) {
-//                if (rightButtonPressed == false)
-//                    launchSpeed += .05;
-//                rightButtonPressed = true;
-//            }
-//            else rightButtonPressed = false;
-//
-//            if (gamepad2.left_bumper) {
-//                if (leftButtonPressed == false)
-//                    launchSpeed -= .05;
-//                leftButtonPressed = true;
-//            }
-//            else leftButtonPressed = false;
-
-            // Send telemetry messages to explain controls and show robot status
-//            telemetry.addData("angle position", robot.getAnglePosition());
-//            telemetry.addData("launcher speed", robot.getFireSpeed());
-//            telemetry.addData("var launcher speed", launchSpeed);
-//            telemetry.addData("left motor encoder",robot.getLeftDriveEncoderValue());
-//            telemetry.addData("right motor encoder", robot.getRightDriveEncoderValue());
-//            telemetry.update();
+                     telemetry.update();
 
         }
     }
