@@ -68,27 +68,14 @@ import java.util.regex.Pattern;
 public class RedAuto extends LinearOpMode {
     // Create a RobotHardware object to be used to access robot hardware.
     // Prefix any hardware functions with "robot." to access this class.
-    RobotHardware robot       = new RobotHardware(this);
+    RobotHardware robot = new RobotHardware(this);
     GyroTurn gyroTurn = new GyroTurn(robot, telemetry);
-    Shoot shoot = new Shoot(robot, telemetry,this);
+    Shoot shoot = new Shoot(robot, telemetry, this);
     ReadObelisk readObelisk = new ReadObelisk(robot, telemetry, this);
     Drive drive = new Drive(robot, telemetry, this);
     Load load = new Load(robot, telemetry, this);
 
-    // Calculate the COUNTS_PER_INCH for your specific drive train.
-    // Go to your motor vendor website to determine your motor's COUNTS_PER_MOTOR_REV
-    // For external drive gearing, set DRIVE_GEAR_REDUCTION as needed.
-    // For example, use a value of 2.0 for a 12-tooth spur gear driving a 24-tooth spur gear.
-    // This is gearing DOWN for less speed and more torque.
-    // For gearing UP, use a gear ratio less than 1.0. Note this will affect the direction of wheel rotation.
-    static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
-    static final double     DRIVE_GEAR_REDUCTION    = 1.0 ;     // No External Gearing.
-    static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
-    static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
-                                                      (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double     DRIVE_SPEED             = 0.6;
-    static final double     TURN_SPEED              = 0.5;
-    patterns pattern = patterns.PGP;
+    patterns pattern = patterns.PPG;
 
 
     @Override
@@ -104,20 +91,26 @@ public class RedAuto extends LinearOpMode {
         // Wait for the game to start (driver presses START)
 
         waitForStart();
-        drive.forward(138, .55);
         pattern = readObelisk.getPattern();
-        robot.LIMELIGHT_PIPE = 1;
+        drive.pid_forward(138, .6);
+        RobotHardware.LIMELIGHT_PIPE = 1;
         robot.setLaunchSpeed(.78);  // spin up launch while turning
         robot.setAngle(.15);
-        gyroTurn.goodEnough(-45); // towards goal
+        gyroTurn.goodEnough(-41); // towards goal
         shoot.thePattern(pattern);
-        gyroTurn.goodEnough(85);
+        robot.setLaunchSpeed(0);
+        gyroTurn.goodEnough(86);
+
         robot.setIntakeSpeed(1);
-        robot.setRevolverPosition(robot.LOAD_1);
-        drive.backward(30,.3);
+        robot.setRevolverPosition(robot.LOAD_3);
+        drive.backward(34,.3);
         load.threeBalls(robot.LOAD_3, robot.LOAD_1, robot.LOAD_2);
-        drive.forward(65,.8);
-        gyroTurn.goodEnough(-39); // towards goal
+        robot.setLaunchSpeed(.78);
+        drive.forward(60,.55);
+        robot.setIntakeSpeed(0);
+        //sleep(30000);
+
+        gyroTurn.goodEnough(-36); // towards goal
         shoot.thePattern(pattern);
         gyroTurn.goodEnough(0);
         drive.backward(40,.5);
