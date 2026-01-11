@@ -37,7 +37,8 @@ public class Drive {
         double clicks = distance * RobotHardware.CLICKS_PER_CENTIMETER;
         robot.runWithoutEncoders();
         robot.leftDrive.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        robot.rightDrive.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);        while (opMode.opModeIsActive() &&
+        robot.rightDrive.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        while (opMode.opModeIsActive() &&
                 robot.leftDrive.getCurrentPosition() < clicks ){
             // update pid controller
 
