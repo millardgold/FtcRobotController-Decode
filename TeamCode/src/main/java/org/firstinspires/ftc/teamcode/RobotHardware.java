@@ -62,8 +62,8 @@ public class RobotHardware {
     private LinearOpMode myOpMode = null;   // gain access to methods in the calling OpMode.
 
     // Define Motor and Servo objects  (Make them private so they can't be accessed externally)
-    private DcMotor leftDrive   = null;
-    private DcMotor rightDrive  = null;
+    public DcMotor leftDrive   = null;
+    public DcMotor rightDrive  = null;
     private DcMotor rightLaunch = null;
     private DcMotor leftLaunch = null;
     private DcMotor activeIntake = null;
@@ -228,9 +228,6 @@ public class RobotHardware {
         angle.setPosition(setAngle);
     }
 
-    public void setKickstand(double setKickstand){
-        kickstand.setPosition(setKickstand);
-    }
 
     public void setRevolverPosition(double barrelSetting) {
         revolver.setPosition(barrelSetting);
@@ -291,6 +288,13 @@ public class RobotHardware {
         rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    public void runWithoutEncoders () {
+        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     // Set targets for the encoders to run to position

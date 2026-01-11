@@ -99,47 +99,30 @@ public class BlueAuto extends LinearOpMode {
         // Wait for the game to start (driver presses START)
 
         waitForStart();
-        drive.forward(138, .55);
         pattern = readObelisk.getPattern();
-        robot.LIMELIGHT_PIPE = 2;
+        drive.pid_forward(138, .6);
+        RobotHardware.LIMELIGHT_PIPE = 2;
         robot.setLaunchSpeed(.78);  // spin up launch while turning
         robot.setAngle(.15);
-        gyroTurn.goodEnough(42); // towards goal
+        gyroTurn.goodEnough(41); // towards goal
         shoot.thePattern(pattern);
-        gyroTurn.goodEnough(-85);
+        robot.setLaunchSpeed(0);
+        gyroTurn.goodEnough(-86);
+
         robot.setIntakeSpeed(1);
-        robot.setRevolverPosition(robot.LOAD_1);
-        drive.backward(30,.3);
+        robot.setRevolverPosition(robot.LOAD_3);
+        drive.backward(34,.3);
         load.threeBalls(robot.LOAD_3, robot.LOAD_1, robot.LOAD_2);
-        drive.forward(65,.8);
+        robot.setLaunchSpeed(.78);
+        drive.forward(60,.55);
+        robot.setIntakeSpeed(0);
+        //sleep(30000);
+
         gyroTurn.goodEnough(36); // towards goal
         shoot.thePattern(pattern);
         gyroTurn.goodEnough(0);
         drive.backward(40,.5);
 
-//        telemetry.addData("Pattern", pattern);
-//        telemetry.update();
-//
-//        //if (pattern == patterns.GPP) robot.setRevolverPosition(robot.LAUNCH_2); //set launch position before shooting patter to go faster, take out second delay in shoot.thePattern
-//        //else robot.setRevolverPosition(robot.LAUNCH_1);
-//
-//        robot.setLaunchSpeed(.78);  // spin up launch while turning
-//        robot.setAngle(.15);
-//        gyroTurn.goodEnough(45); // towards goal
-//        shoot.thePattern(pattern);
-//        robot.setLaunchSpeed(0);
-//        robot.setIntakeSpeed(1);
-//        robot.setRevolverPosition(robot.LOAD_1);
-//        gyroTurn.goodEnough(0);
-//        drive.backward(10, .7);
-//        gyroTurn.goodEnough(-90);
-//        drive.backward(23, .4);
-//        load.threeBalls(robot.LOAD_1, robot.LOAD_3, robot.LOAD_2);
-//        gyroTurn.goodEnough(-70);
-//        drive.forward(60, 1);
-//        robot.setLaunchSpeed(.78);
-//        gyroTurn.goodEnough(45);
-//        shoot.thePattern(pattern);
     }
 
 

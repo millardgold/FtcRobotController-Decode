@@ -18,12 +18,12 @@ public class Load {
         drive = new Drive(robot, telemetry, opMode);
     }
     public void threeBalls (double first, double second, double third) throws InterruptedException {
+//        if (opMode.opModeIsActive()) {
+//            drive.backward(8,.1);
+//        }
         if (opMode.opModeIsActive()) {
-            drive.backward(8,.1);
-        }
-        if (opMode.opModeIsActive()) {
-            robot.setRevolverPosition(second);
             Thread.sleep(1000);
+            robot.setRevolverPosition(second);
             drive.backward(10,.1);
         }
         if (opMode.opModeIsActive()) {

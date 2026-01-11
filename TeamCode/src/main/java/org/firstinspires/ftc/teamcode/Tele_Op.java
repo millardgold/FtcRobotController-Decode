@@ -129,12 +129,6 @@ public class Tele_Op extends LinearOpMode {
             robot.setIntakeSpeed(intakeSpeed);
 
 
-            if (gamepad1.right_bumper)
-                robot.setKickstand(RobotHardware.KICKSTAND_OUT);
-
-            if (gamepad1.left_bumper)
-                robot.setKickstand(RobotHardware.KICKSTAND_IN);
-
             if (gamepad2.right_trigger > .5)
                 robot.setKickerPosition(RobotHardware.KICK_POSITION);
             else
