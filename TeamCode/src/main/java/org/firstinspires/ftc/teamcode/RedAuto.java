@@ -91,8 +91,8 @@ public class RedAuto extends LinearOpMode {
         // Wait for the game to start (driver presses START)
 
         waitForStart();
-        pattern = readObelisk.getPattern();
         drive.pid_forward(138, .6);
+        pattern = readObelisk.getPattern();
         RobotHardware.LIMELIGHT_PIPE = 1;
         robot.setLaunchSpeed(.75);  // spin up launch while turning
         robot.setAngle(.14);

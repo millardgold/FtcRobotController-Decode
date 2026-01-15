@@ -100,26 +100,26 @@ public class RedLongRange extends LinearOpMode {
         robot.setAngle(.1);
         drive.forward(20, .3);
         pattern = readObelisk.getPattern();
-        robot.LIMELIGHT_PIPE = 1;
+        RobotHardware.LIMELIGHT_PIPE = 1;
         robot.limelight.pipelineSwitch(1);
         gyroTurn.goodEnough(-21);
 
 
         switch (pattern) {
             case GPP:
-                shoot_a_ball(robot.LAUNCH_2);
-                shoot_a_ball(robot.LAUNCH_1);
-                shoot_a_ball(robot.LAUNCH_3);
+                shoot_a_ball(RobotHardware.LAUNCH_2);
+                shoot_a_ball(RobotHardware.LAUNCH_1);
+                shoot_a_ball(RobotHardware.LAUNCH_3);
                 break;
             case PGP:
-                shoot_a_ball(robot.LAUNCH_1);
-                shoot_a_ball(robot.LAUNCH_2);
-                shoot_a_ball(robot.LAUNCH_3);
+                shoot_a_ball(RobotHardware.LAUNCH_1);
+                shoot_a_ball(RobotHardware.LAUNCH_2);
+                shoot_a_ball(RobotHardware.LAUNCH_3);
                 break;
             case PPG:
-                shoot_a_ball(robot.LAUNCH_3);
-                shoot_a_ball(robot.LAUNCH_1);
-                shoot_a_ball(robot.LAUNCH_2);
+                shoot_a_ball(RobotHardware.LAUNCH_3);
+                shoot_a_ball(RobotHardware.LAUNCH_1);
+                shoot_a_ball(RobotHardware.LAUNCH_2);
                 break;
         }
         telemetry.addData("Pattern", pattern);
@@ -133,9 +133,9 @@ public class RedLongRange extends LinearOpMode {
     private void shoot_a_ball (double ball_to_fire) {
         robot.setRevolverPosition(ball_to_fire);
         sleep(2000);
-        robot.setKickerPosition(robot.KICK_POSITION);
+        robot.setKickerPosition(RobotHardware.KICK_POSITION);
         sleep(500);
-        robot.setKickerPosition(robot.KICK_RESET);
+        robot.setKickerPosition(RobotHardware.KICK_RESET);
         sleep(500);
     }
 

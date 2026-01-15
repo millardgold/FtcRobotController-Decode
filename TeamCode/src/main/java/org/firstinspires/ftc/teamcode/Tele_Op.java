@@ -85,8 +85,8 @@ public class Tele_Op extends LinearOpMode {
         double drive        = 0;
         double turn         = 0;
         double launchSpeed  = .75;
-        double launchStandBy= .73;
-        double launchAngle  = .22;
+        double launchStandBy= .75;
+        double launchAngle  = .14;
         double intakeSpeed  = 0;
         double currHeading;
         double distanceToGoal = -1;
