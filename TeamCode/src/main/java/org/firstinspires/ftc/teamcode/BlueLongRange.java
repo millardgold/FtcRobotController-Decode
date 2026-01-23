@@ -96,9 +96,11 @@ public class BlueLongRange extends LinearOpMode {
         // Wait for the game to start (driver presses START)
 
         waitForStart();
+        sleep(27000);
         robot.setLaunchSpeed(1);
         robot.setAngle(.1);
-        drive.forward(20, .3);
+        drive.forward(50, .3);
+        /*
         pattern = readObelisk.getPattern();
         robot.LIMELIGHT_PIPE = 1;
         robot.limelight.pipelineSwitch(1);
@@ -127,6 +129,8 @@ public class BlueLongRange extends LinearOpMode {
 
         gyroTurn.goodEnough(0);
         drive.forward(30, .3);
+
+         */
 
 
     }

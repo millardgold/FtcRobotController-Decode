@@ -101,8 +101,8 @@ public class BlueAutoGoal extends LinearOpMode {
         waitForStart();
         robot.setLaunchSpeed(.78);  // spin up launch while turning
         robot.setAngle(.15);
-        drive.backward(90, .5);
-        gyroTurn.goodEnough(-31);
+        drive.backward(85, .5);
+        gyroTurn.goodEnough(-45);
         pattern = readObelisk.getPattern();
         gyroTurn.goodEnough(0);
         robot.LIMELIGHT_PIPE = 2;

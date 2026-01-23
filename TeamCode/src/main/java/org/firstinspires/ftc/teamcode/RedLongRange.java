@@ -96,9 +96,11 @@ public class RedLongRange extends LinearOpMode {
         // Wait for the game to start (driver presses START)
 
         waitForStart();
+        sleep(27000);
         robot.setLaunchSpeed(1);
         robot.setAngle(.1);
-        drive.forward(20, .3);
+        drive.forward(50, .3);
+        /*
         pattern = readObelisk.getPattern();
         RobotHardware.LIMELIGHT_PIPE = 1;
         robot.limelight.pipelineSwitch(1);
@@ -125,8 +127,11 @@ public class RedLongRange extends LinearOpMode {
         telemetry.addData("Pattern", pattern);
         telemetry.update();
 
+
         gyroTurn.goodEnough(0);
         drive.forward(30, .3);
+
+         */
 
 
     }
