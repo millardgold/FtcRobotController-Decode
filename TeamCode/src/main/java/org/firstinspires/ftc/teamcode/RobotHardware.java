@@ -136,6 +136,10 @@ public class RobotHardware {
         rightDrive.setDirection(DcMotor.Direction.FORWARD);
         activeIntake.setDirection(DcMotor.Direction.REVERSE);
 
+        // Brake drive motors when zero power
+        leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         // Reverse one of the launch motors
         rightLaunch.setDirection(DcMotor.Direction.FORWARD);
         leftLaunch.setDirection(DcMotor.Direction.REVERSE);
